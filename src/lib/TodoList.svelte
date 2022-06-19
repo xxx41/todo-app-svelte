@@ -1,5 +1,5 @@
 <script lang="typescript">
-	import { todoList } from './store/store.js';
+    import { todoList } from './store/store.js';
     import { onMount } from "svelte";
     import TodoRepository from "./db/TodoRepository";
     import type { Todo } from './interface/Todo.js';
@@ -16,12 +16,10 @@
         filtered = todoListValue.filter(element => element.status == active);
     }
 
-    onMount(() => {
-        getTodos();
-    });
+    onMount(() => getTodos());
 
     function getTodos(): void {
-        const todos = TodoRepository.findAll() ?? {};
+        const todos: Array<Todo> = TodoRepository.findAll();
         todoList.update(() => Object.values(todos));
     }
 
@@ -31,10 +29,10 @@
     }
 
     function editToggle(todo: Todo): void {
-        todo.editActivated = !todo.editActivated;
-        if (!todo.editActivated) {
+        if (todo.editActivated) {
             TodoRepository.update(todoListValue);
         }
+        todo.editActivated = !todo.editActivated;
         todoList.update(() => Object.values(todoListValue));
     }
 

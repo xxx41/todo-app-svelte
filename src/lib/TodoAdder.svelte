@@ -10,7 +10,7 @@
 
     function addTodo(): void {
         if (todo.length !== 0) {
-            const todoObject = getTodoObject(todo);
+            const todoObject: Todo = getTodoDefaultObject(todo);
             todoListValue.push(todoObject);
             todoList.update(() => todoListValue);
             TodoRepository.insert(todoObject);
@@ -22,7 +22,7 @@
         if (event.key === 'Enter') addTodo();
     }
 
-    function getTodoObject(todo: string): Todo {
+    function getTodoDefaultObject(todo: string): Todo {
         return {
             message: todo,
             status: 'pending',
@@ -62,27 +62,27 @@
 
             @include hoverAndActive;
         }
-    }
 
-    input[type=text] {
-        border: solid 1px $placeholder;
-        border-right: none;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-        color: $black;
-        font-size: 1rem;
-        height: 35px;
-        max-width: 400px;
-        padding: 0 15px;
-        width: 100%;
+        input[type=text] {
+            border: solid 1px $placeholder;
+            border-right: none;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            color: $black;
+            font-size: 1rem;
+            height: 35px;
+            max-width: 400px;
+            padding: 0 15px;
+            width: 100%;
 
-        &:focus-visible {
-            border-color: $orange;
-            outline: 0;
-        }
+            &:focus-visible {
+                border-color: $orange;
+                outline: 0;
+            }
 
-        &::placeholder {
-            color: $placeholder;
+            &::placeholder {
+                color: $placeholder;
+            }
         }
     }
 </style>
