@@ -1,0 +1,9 @@
+@mixin hoverAndActive {
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        transform: scale(.97);
+    }
+}
